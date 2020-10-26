@@ -55,11 +55,11 @@ class App extends Component {
 
   getInfo() {
     Taro.getUserInfo().then(i => {
-      console.log(i)
+      // console.log(i)
     })
     Taro.getLocation({})
       .then(i => {
-        console.log(i)
+        // console.log(i)
       })
   }
 

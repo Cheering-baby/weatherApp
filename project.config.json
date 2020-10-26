@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "weatherApp",
   "description": "weather application on phone",
-  "appid": "wxafb6cea6aa924dba",
+  "appid": "wxe23bc51e74982925",
   "setting": {
     "urlCheck": false,
     "es6": false,
