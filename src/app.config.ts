@@ -36,5 +36,11 @@ export default {
         selectedIconPath: "./images/tab/user-active.png"
       }
     ]
-  }
+  },
+  // plugins: {
+  //   myPlugin: {
+  //     version: '1.0.0',
+  //     provider: 'wxidxxxxxxxxxxxxxxxx'
+  //   }
+  // }
 };

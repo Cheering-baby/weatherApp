@@ -23,7 +23,7 @@ class App extends Component {
           //   }
           // })
           Taro.getSetting().then(data => {
-            console.log(data)
+            // console.log(data)
             const { authSetting } = data;
             if (authSetting['scope.userInfo']) {
               _this.getInfo();
@@ -35,13 +35,13 @@ class App extends Component {
                   _this.getInfo();
                 },
                 fail(err) {
-                  console.log(err)
+                  // console.log(err)
                 }
               })
             }
           });
         } else {
-          console.log('登录失败！' + res.errMsg)
+          // console.log('登录失败！' + res.errMsg)
         }
       }
     })

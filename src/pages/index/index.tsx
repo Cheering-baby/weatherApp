@@ -4,6 +4,7 @@ import { View, Text } from "@tarojs/components";
 import ShareBtn from "../../components/shareBtn";
 // import BarChart from "../../components/BarChart";
 import { AtButton } from "taro-ui";
+import Temperature from "./Temperature";
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./index.less";
@@ -17,15 +18,15 @@ const data = {
   cityEn: "fuzhou",
   country: "中国",
   countryEn: "China",
-  wea: "晴",
+  wea: "default",
   wea_img: "qing",
-  tem: "22",
+  tem: "default",
   tem1: "26",
   tem2: "18",
   win: "东风",
   win_speed: "2级",
   win_meter: "小于12km/h",
-  humidity: "65%",
+  humidity: "default",
   visibility: "29.6km",
   pressure: "1006",
   air: "42",
@@ -39,10 +40,16 @@ const data = {
   }
 };
 
+const params = {
+  appid: "14724791",
+  appsecret: "HRc3omHq"
+};
+
 type weatherData = typeof data;
 
 type StateType = {
   weatherData: weatherData;
+  seven: Array<weatherData>;
 };
 
 interface Index {
@@ -53,27 +60,15 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      weatherData: data
+      weatherData: data,
+      seven: [data]
     };
   }
   componentWillMount() {}
 
   componentDidMount() {
-    Taro.request({
-      url: "https://tianqiapi.com/api",
-      method: "GET",
-      data: {
-        version: "v61",
-        appid: "14724791",
-        appsecret: "HRc3omHq",
-        success: (res: weatherData) => {
-          console.log(res);
-          this.setState({
-            weatherData: res
-          });
-        }
-      }
-    });
+    this.requestSeven();
+    this.requestToday();
   }
 
   componentWillUnmount() {}
@@ -82,12 +77,47 @@ class Index extends Component {
 
   componentDidHide() {}
 
+  requestToday() {
+    Taro.request({
+      url: "https://tianqiapi.com/api",
+      method: "GET",
+      data: {
+        ...params,
+        version: "v6",
+      },
+      success: res => {
+        // console.log(res);
+        this.setState({
+          weatherData: res.data
+        });
+      }
+    });
+  }
+
+  requestSeven() {
+    Taro.request({
+      url: "https://tianqiapi.com/api",
+      method: "GET",
+      data: {
+        ...params,
+        version: "v1"
+      },
+      success: (res) => {
+        console.log(res);
+        this.setState({
+          seven: res.data.data
+        });
+      }
+    });
+  }
+
   handleGetUserInfo(e) {
-    console.log(e);
-    console.log(JSON.parse(e.detail.rawData));
+    // console.log(e);
+    // console.log(JSON.parse(e.detail.rawData));
   }
 
   render() {
+    console.log(this.state)
     return (
       <View className="container">
         <ShareBtn />
@@ -106,7 +136,12 @@ class Index extends Component {
             <View>查看降水雷达</View>
           </View>
         </View>
-        {/* <BarChart /> */}
+        <View className="container2">
+          {/* <View className="title">
+            未来七天
+          </View> */}
+          <Temperature seven={this.state.seven} />
+        </View>
       </View>
     );
   }

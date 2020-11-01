@@ -35,32 +35,35 @@
 	],
 	"author": "",
 	"dependencies": {
+		"@antv/f2": "^3.7.7",
+		"@antv/wx-f2": "^2.1.1",
 		"@babel/runtime": "^7.7.7",
 		"@tarojs/cli": "3.0.11",
 		"@tarojs/components": "3.0.11",
+		"@tarojs/react": "3.0.11",
 		"@tarojs/runtime": "3.0.11",
 		"@tarojs/taro": "3.0.11",
 		"lodash": "4.17.15",
-		"@tarojs/react": "3.0.11",
 		"react": "^16.10.0",
 		"react-dom": "^16.10.0",
+		"taro-f2": "^2.2.0",
 		"taro-ui": "^3.0.0-alpha.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.0",
 		"@tarojs/mini-runner": "3.0.11",
 		"@tarojs/webpack-runner": "3.0.11",
+		"@types/react": "^16.0.0",
 		"@types/webpack-env": "^1.13.6",
+		"@typescript-eslint/eslint-plugin": "^2.x",
+		"@typescript-eslint/parser": "^2.x",
 		"babel-preset-taro": "3.0.11",
 		"eslint": "^6.8.0",
 		"eslint-config-taro": "3.0.11",
-		"stylelint": "9.3.0",
-		"@typescript-eslint/parser": "^2.x",
-		"@typescript-eslint/eslint-plugin": "^2.x",
-		"typescript": "^3.7.0",
-		"@types/react": "^16.0.0",
-		"eslint-plugin-react": "^7.8.2",
 		"eslint-plugin-import": "^2.12.0",
-		"eslint-plugin-react-hooks": "^1.6.1"
+		"eslint-plugin-react": "^7.8.2",
+		"eslint-plugin-react-hooks": "^1.6.1",
+		"stylelint": "9.3.0",
+		"typescript": "^3.7.0"
 	}
 }
