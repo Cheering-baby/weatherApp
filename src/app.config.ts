@@ -1,5 +1,5 @@
 export default {
-  pages: ["pages/index/index", "pages/todoList/index"],
+  pages: ["pages/index/index", "pages/todoList/index", 'pages/echarts/index'],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
@@ -23,12 +23,12 @@ export default {
         iconPath: "./images/tab/home.png",
         selectedIconPath: "./images/tab/home-active.png"
       },
-      // {
-      //   "pagePath": "pages/todoList/index",
-      //   "text": "购物车",
-      //   iconPath: './images/tab/cart.png',
-      //   selectedIconPath: './images/tab/cart-active.png',
-      // },
+      {
+        "pagePath": "pages/echarts/index",
+        "text": "购物车",
+        iconPath: './images/tab/cart.png',
+        selectedIconPath: './images/tab/cart-active.png',
+      },
       {
         pagePath: "pages/todoList/index",
         text: "我的",

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Taro from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import ShareBtn from "../../components/shareBtn";
+// import BarChart from "../../components/BarChart";
 import { AtButton } from "taro-ui";
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
@@ -105,6 +106,7 @@ class Index extends Component {
             <View>查看降水雷达</View>
           </View>
         </View>
+        {/* <BarChart /> */}
       </View>
     );
   }
