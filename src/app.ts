@@ -1,13 +1,18 @@
 import { View } from '@tarojs/components';
 import Taro from "@tarojs/taro";
 import { Component } from 'react'
-import './app.less'
+import './app.less';
+import { getGlobalData, setGlobalData } from './global_data';
+
+const xml2json = require('xmlstring2json');
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    // this.getUserInfo = this.getUserInfo.bind(this);
+    this.state = {
+      n: 0
+    }
   }
 
   componentDidMount() {
@@ -15,13 +20,6 @@ class App extends Component {
     Taro.login({
       success: function (res) {
         if (res.code) {
-          //发起网络请求
-          // Taro.request({
-          //   url: 'https://test.com/onLogin',
-          //   data: {
-          //     code: res.code
-          //   }
-          // })
           Taro.getSetting().then(data => {
             // console.log(data)
             const { authSetting } = data;
@@ -42,6 +40,7 @@ class App extends Component {
           });
         } else {
           // console.log('登录失败！' + res.errMsg)
+
         }
       }
     })
@@ -54,13 +53,30 @@ class App extends Component {
   componentDidCatchError() { }
 
   getInfo() {
+    const _this = this;
     Taro.getUserInfo().then(i => {
-      // console.log(i)
+      console.log(i)
     })
-    Taro.getLocation({})
-      .then(i => {
-        // console.log(i)
-      })
+    // Taro.getLocation({})
+    //   .then(i => {
+    //     // console.log(i)
+    //     Taro.request({
+    //       url: "http://api.map.baidu.com/reverse_geocoding/v3/",
+    //       method: "GET",
+    //       data: {
+    //         ak: 'y5psqaCrCqhNZAxti1PUGGRlhlw72HaT',
+    //         location: `${i.latitude},${i.longitude}`
+    //       },
+    //       success: res => {
+    //         const GeocoderSearchResponse = xml2json(res.data).GeocoderSearchResponse;
+    //         Taro.setStorage({ key: 'address', data: GeocoderSearchResponse.result.addressComponent });
+    //         console.log(getGlobalData('address'));
+    //         _this.setState({
+    //           n: Math.random() * 1000,
+    //         })
+    //       }
+    //     });
+    //   })
   }
 
 
@@ -71,7 +87,6 @@ class App extends Component {
 
     return (
       this.props.children
-
     )
   }
 }

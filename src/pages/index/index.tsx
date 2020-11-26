@@ -5,6 +5,7 @@ import ShareBtn from "../../components/shareBtn";
 // import BarChart from "../../components/BarChart";
 import { AtButton } from "taro-ui";
 import Temperature from "./Temperature";
+import { getGlobalData, setGlobalData } from "../../global_data";
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./index.less";
@@ -83,7 +84,7 @@ class Index extends Component {
       method: "GET",
       data: {
         ...params,
-        version: "v6",
+        version: "v6"
       },
       success: res => {
         // console.log(res);
@@ -102,7 +103,7 @@ class Index extends Component {
         ...params,
         version: "v1"
       },
-      success: (res) => {
+      success: res => {
         console.log(res);
         this.setState({
           seven: res.data.data
@@ -117,10 +118,17 @@ class Index extends Component {
   }
 
   render() {
-    console.log(this.state)
+    const { city = {}, district = {}, street = {} } =
+      getGlobalData("address") || {};
+    console.log(getGlobalData("address"));
     return (
       <View className="container">
         <ShareBtn />
+        <View>
+          <Text>{street["#text"]}</Text>
+          <Text>{district["#text"]}</Text>
+          <Text>{city["#text"]}</Text>
+        </View>
         <View className="container1">
           <View className="temContainer">
             <View className="tem">{this.state.weatherData.tem}℃</View>
